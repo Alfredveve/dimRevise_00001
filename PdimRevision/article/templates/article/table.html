@@ -1,0 +1,35 @@
+{% extends 'article/base.html' %}
+
+{% block section %}
+<h1>La Gestion des articles dans le tableau</h1>
+<table>
+    <thead>
+        <tr>
+            <th>N°</th>
+            <th>Description</th>
+            <th>Price</th>
+            <th>Voir</th>
+            <th>Modifier</th>
+            <th>Supprimer</th>
+        </tr>
+    </thead>
+    <tbody>
+        
+        {% for table in tables %}
+        <tr>
+            <td>{{ table.id }}</td>
+            <td>{{ table.name }}</td>
+            <td>{{ table.price }} GNF</td>
+            <td>
+                <a href="#">Voir</a>
+                <a href="{{ table.get_absolute_url }}">Modifier</a>
+                <a href="{% url 'delete' table.id %}">Supprimer</a>
+            </td>
+        </tr>
+        {% empty %}
+        <h3>le tableau est vide</h3>
+        {% endfor %}
+            
+    </tbody>
+</table>
+{% endblock %}
